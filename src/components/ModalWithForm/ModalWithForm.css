@@ -1,0 +1,126 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #0000004d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal__content {
+    background-color: #fff;
+    position: relative;
+    padding: 28px 28px 36px;
+    max-width: 33vw;
+    width: 100%;
+    min-height: 50vh; 
+    border-radius: 12px;
+}
+
+.modal__close {
+  position: absolute;
+  cursor: pointer;
+  background-image: url(../../assets/delete-button.svg);
+  border: none;
+  background-color: transparent;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: opacity 0.5s ease-in-out;
+  padding: 0;
+  top: 20px;
+  right: 28px;
+  cursor: pointer;
+}
+
+.modal__close:hover {
+    opacity: 75%;
+}
+
+.modal__title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.modal__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal__label {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.2; 
+    margin-top: 24px;
+}
+
+.modal__input {
+  display: block;
+  width: 100%;
+  margin: 0;
+  border: none;
+  border-bottom: solid 1px #000;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.modal__radio-buttons {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    padding: 0;
+    margin-top: 24px;
+  }
+
+.modal__legend {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.modal__label_type_radio {
+    margin: 0;
+    color: #000;
+    opacity: 50%;
+    transition: opcity 0.1s linear;
+}
+
+.modal__label_type_radio:active {
+    opacity: 100%;
+}
+
+.modal__radio-input {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #000;
+    opacity: 50%;
+    transition: opcity 0.1s linear;
+}
+
+.modal__radio-input:active {
+  opacity: 100%;
+}
+
+.modal__submit-button {
+  margin-top: 32px; 
+  max-width: 124px;
+  width: 100%;
+  min-height: 36px; 
+  padding: 8px 16px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, .3);
+  border: none;
+  cursor: pointer;
+}
