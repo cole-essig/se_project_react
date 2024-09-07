@@ -1,0 +1,21 @@
+.card {
+display: flex;
+justify-content: center;
+max-width: 325px;
+min-height: 328px;
+position: relative;
+overflow: hidden;
+border: 2px solid rgba(0, 0, 0, 0.3);
+border-radius: 15px;
+}
+
+.card__name {
+    position: absolute;
+    top: 15px;
+    margin: 0;
+
+}
+
+.card__image {
+ max-width: 100%;
+}
