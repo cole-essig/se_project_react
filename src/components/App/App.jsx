@@ -14,7 +14,9 @@ function App() {
     const [weatherData, setWeatherData] = useState({ 
       type: "",
       temp: { F: 999 },
-      city: ""
+      city: "",
+      isDay: "",
+      condition: ""
     });
     const [activeModal, setActiveModal] = useState('');
     const [selectedCard, setSelectedCard] = useState({})
