@@ -7,8 +7,8 @@ function Main({ weatherData, handleImageClick }) {
     return (
         <main>
             <WeatherCard weatherData={weatherData} />
-            <section className='Cards'>
-                <p className='Cards__text'>
+            <section className='cards'>
+                <p className='cards__text'>
                     Today is {weatherData.temp.F} &deg; F/ You may want to wear:
                 </p><ul className="cards__list">
                     {defaultClothingItems.filter((item) => {

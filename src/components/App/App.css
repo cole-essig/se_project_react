@@ -1,3 +1,13 @@
+@font-face {
+    font-family: "Cabinet Grotesk-med";
+    src: url(../../assets/CabinetGrotesk-Medium.woff2);
+}
+
+@font-face {
+    font-family: "Cabinet Grotesk-bold";
+    src: url(../../assets/CabinetGrotesk-Bold.woff2);
+}
+
 .page {
     background-color: #f3f3f3;
 }

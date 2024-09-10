@@ -66,6 +66,7 @@
     font-size: 16px;
     line-height: 1.2; 
     margin-top: 24px;
+    font-family: "Cabinet Grotesk-med", 'Times New Roman', Times, serif;
 }
 
 .modal__input {
@@ -77,6 +78,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 1.2;
+  font-family: "Cabinet Grotesk-med", 'Times New Roman', Times, serif;
   color: #000;
   white-space: nowrap;
   overflow: hidden;
@@ -95,30 +97,31 @@
     font-weight: 700;
     font-size: 16px;
     line-height: 1.2;
+    font-family: "Cabinet Grotesk-med", 'Times New Roman', Times, serif;
 }
 
 .modal__label_type_radio {
-    margin: 0;
+    margin: 8px 0 0;
     color: #000;
     opacity: 50%;
-    transition: opcity 0.1s linear;
 }
 
-.modal__label_type_radio:active {
+.modal__label_type_radio:checked {
     opacity: 100%;
 }
 
 .modal__radio-input {
+    margin-right: 4px;
     font-weight: 700;
     font-size: 16px;
     line-height: 1.2;
-    color: #000;
+    font-family: "Cabinet Grotesk-med", 'Times New Roman', Times, serif;
+    background-color: #000;
     opacity: 50%;
-    transition: opcity 0.1s linear;
 }
 
-.modal__radio-input:active {
-  opacity: 100%;
+.modal__radio-input:checked {
+    opacity: 100%;
 }
 
 .modal__submit-button {
@@ -127,8 +130,12 @@
   width: 100%;
   min-height: 36px; 
   padding: 8px 16px;
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 700;
+  font-family: "Cabinet Grotesk-med", 'Times New Roman', Times, serif;
   color: #fff;
-  background-color: rgba(0, 0, 0, .3);
+  background-color: rgba(0, 0, 0, 1);
   border: none;
   cursor: pointer;
 }
