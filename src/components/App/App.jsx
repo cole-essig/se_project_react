@@ -5,6 +5,7 @@ import Header from '../Header/Header'
 import Main from '../Main/Main'
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import ItemModal from '../ItemModal/ItemModal';
+import Footer from '../Footer/Footer';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
             <div className='page__content'>
                 <Header handleAddClick={handleAddClick} />
                 <Main weatherData={weatherData} handleImageClick={handleImageClick} />
+                <Footer />
             </div>
             <ModalWithForm 
               buttonText={'Add garment'} 

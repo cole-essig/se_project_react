@@ -1,0 +1,17 @@
+.footer {
+    min-height: 215px;
+    width: 100%;
+}
+
+.footer__content {
+    display: flex;
+}
+
+
+.footer__text {
+    margin: 170px auto 24px 40px;
+}
+
+.footer__date {
+    margin: 170px 40px 24px auto; 
+}
