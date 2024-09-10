@@ -102,26 +102,21 @@
 
 .modal__label_type_radio {
     margin: 8px 0 0;
-    color: #000;
-    opacity: 50%;
-}
-
-.modal__label_type_radio:checked {
-    opacity: 100%;
-}
-
-.modal__radio-input {
-    margin-right: 4px;
+    color: rgba(0, 0, 0, .5);
     font-weight: 700;
     font-size: 16px;
     line-height: 1.2;
     font-family: "Cabinet Grotesk-med", 'Times New Roman', Times, serif;
-    background-color: #000;
-    opacity: 50%;
+    transition: color .1s linear;
 }
 
-.modal__radio-input:checked {
-    opacity: 100%;
+.modal__label_type_radio:has(:checked) {
+    color: rgba(0, 0, 0, 1);
+  }
+
+.modal__radio-input {
+    margin-right: 4px;
+    accent-color: #000;
 }
 
 .modal__submit-button {
