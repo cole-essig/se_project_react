@@ -6,10 +6,10 @@ import ItemCard from '../ItemCard/ItemCard';
 function Main({ weatherData, handleImageClick }) {
     return (
         <main>
-            <WeatherCard />
+            <WeatherCard weatherData={weatherData} />
             <section className='Cards'>
                 <p className='Cards__text'>
-                    Today is 75 &deg; F/ You may want to wear:
+                    Today is {weatherData.temp.F} &deg; F/ You may want to wear:
                 </p><ul className="cards__list">
                     {defaultClothingItems.filter((item) => {
                         return item.weather === weatherData.type;
