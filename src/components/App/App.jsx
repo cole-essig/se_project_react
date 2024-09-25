@@ -8,6 +8,7 @@ import ItemModal from '../ItemModal/ItemModal';
 import Footer from '../Footer/Footer';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import { APIkey, latitude, longitude } from '../../utils/constants';
+import {CurrentTempUnitContext} from '../contexts/CurrentTempUnitContext';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
     });
     const [activeModal, setActiveModal] = useState('');
     const [selectedCard, setSelectedCard] = useState({})
+    const [currentTempUnit, setToggleUnitSwitch] = useState("F");
 
     const handleAddClick = () => {
       setActiveModal('add');
@@ -34,6 +36,14 @@ function App() {
       setSelectedCard(card)
     }
 
+    const handleTempToggleChange = (e) => {
+        if(currentTempUnit === 'C') {
+          setToggleUnitSwitch('F')
+      } else {
+          setToggleUnitSwitch('C')
+      }
+    }
+
     useEffect(() => {
       getWeather(APIkey, latitude, longitude).then((data) => {
         console.log(data);
@@ -46,6 +56,7 @@ function App() {
 
     return (
         <div className='page'>
+          <CurrentTempUnitContext.Provider value={{currentTempUnit, handleTempToggleChange}}>
             <div className='page__content'>
                 <Header handleAddClick={handleAddClick} weatherData={weatherData} />
                 <Main weatherData={weatherData} handleImageClick={handleImageClick} />
@@ -109,6 +120,7 @@ function App() {
               handleModalClose={closeActiveModal}
               card={selectedCard}
             />
+          </CurrentTempUnitContext.Provider>
         </div>
     )
 }
