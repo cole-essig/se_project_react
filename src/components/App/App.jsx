@@ -46,9 +46,9 @@ function App() {
 
     useEffect(() => {
       getWeather(APIkey, latitude, longitude).then((data) => {
-        console.log(data);
         const filterData = filterWeatherData(data);
         setWeatherData(filterData);
+        console.log(filterData.temp)
       }).catch((res) => {
         console.error(res);
     })
