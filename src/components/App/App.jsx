@@ -37,6 +37,10 @@ function App() {
       setSelectedCard(card)
     }
 
+    const onAddItemSubmit = (values) => {
+      console.log(values)
+    }
+
     const handleTempToggleChange = (e) => {
         if(currentTempUnit === 'C') {
           setToggleUnitSwitch('F')
@@ -63,7 +67,7 @@ function App() {
                 <Main weatherData={weatherData} handleImageClick={handleImageClick} />
                 <Footer />
             </div>
-            {activeModal === 'add' && <AddItemModal handleModalClose={closeActiveModal} isOpen={activeModal === "add"} onAddItem={''} />}
+            {activeModal === 'add' && <AddItemModal handleModalClose={closeActiveModal} isOpen={activeModal === "add"} onAddItem={onAddItemSubmit} />}
             {activeModal === 'preview' &&  <ItemModal 
               isOpen={activeModal === 'preview'}
               handleModalClose={closeActiveModal}
