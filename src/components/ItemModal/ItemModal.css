@@ -26,6 +26,7 @@
     width: 100%;
     min-height: 33vh; 
     border-radius: 12px;
+    overflow: hidden;
 }
 
   .modal__close {
