@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import { Routes, Route } from 'react-router-dom';
 import './App.css'
 import Header from '../Header/Header'
 import Main from '../Main/Main'
@@ -64,7 +64,12 @@ function App() {
           <CurrentTempUnitContext.Provider value={{currentTempUnit, handleTempToggleChange}}>
             <div className='page__content'>
                 <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-                <Main weatherData={weatherData} handleImageClick={handleImageClick} />
+                
+                <Routes>
+                  <Route path='/' element={<Main weatherData={weatherData} handleImageClick={handleImageClick} />} />
+                  <Route path='/profile' element={<p>Hey Y'all</p>} />
+                </Routes>
+
                 <Footer />
             </div>
             {activeModal === 'add' && <AddItemModal handleModalClose={closeActiveModal} isOpen={activeModal === "add"} onAddItem={onAddItemSubmit} />}
