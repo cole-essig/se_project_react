@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css'
 import Header from '../Header/Header'
 import Main from '../Main/Main'
-import ModalWithForm from '../ModalWithForm/ModalWithForm';
+import Profile from '../Profile/Profile';
 import ItemModal from '../ItemModal/ItemModal';
 import Footer from '../Footer/Footer';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
@@ -67,7 +67,7 @@ function App() {
                 
                 <Routes>
                   <Route path='/' element={<Main weatherData={weatherData} handleImageClick={handleImageClick} />} />
-                  <Route path='/profile' element={<p>Hey Y'all</p>} />
+                  <Route path='/profile' element={<Profile weatherData={weatherData} handleImageClick={handleImageClick} />} />
                 </Routes>
 
                 <Footer />
