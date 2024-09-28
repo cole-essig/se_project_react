@@ -40,3 +40,8 @@
     font-size: 20px;
     font-family: "Cabinet Grotesk-med", 'Times New Roman', Times, serif;
 }
+
+.header__link {
+    text-decoration: none;
+    color: black;
+}
