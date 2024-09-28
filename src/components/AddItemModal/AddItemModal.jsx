@@ -5,18 +5,21 @@ function AddItemModal({ handleModalClose, isOpen, onAddItem}) {
     const [name, setName] = useState('');
     const handleNameChange = (e) => {
       setName(e.target.value);
-      console.log(name);
     }
 
     const [link, setURL] = useState('');
     const handleLinkChange = (e) => {
       setURL(e.target.value);
-      console.log(link);
+    }
+
+    const [weatherType, setWeatherType] = useState('');
+    const handleRadioClick = (e) => {
+        setWeatherType(e.target.value);
     }
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        onAddItem({ name, link });
+        onAddItem({ name, link, weatherType });
     }
     
     return (
@@ -56,6 +59,7 @@ function AddItemModal({ handleModalClose, isOpen, onAddItem}) {
                         type="radio" 
                         className="modal__radio-input" 
                         value='hot'
+                        onChange={handleRadioClick}
                     /> Hot
                 </label>
                 <label htmlFor="warm" className="modal__label modal__label_type_radio">
@@ -64,7 +68,8 @@ function AddItemModal({ handleModalClose, isOpen, onAddItem}) {
                         id="warm"
                         type="radio" 
                         className="modal__radio-input"
-                        value='warm' 
+                        value='warm'
+                        onChange={handleRadioClick} 
                     /> Warm
                 </label>
                 <label htmlFor="cold" className="modal__label modal__label_type_radio">
@@ -73,7 +78,8 @@ function AddItemModal({ handleModalClose, isOpen, onAddItem}) {
                         id='cold' 
                         type="radio" 
                         className="modal__radio-input"
-                        value='cold' 
+                        value='cold'
+                        onChange={handleRadioClick} 
                     /> Cold
                 </label>
             </fieldset>

@@ -7,7 +7,7 @@ import Profile from '../Profile/Profile';
 import ItemModal from '../ItemModal/ItemModal';
 import Footer from '../Footer/Footer';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
-import { APIkey, latitude, longitude } from '../../utils/constants';
+import { APIkey, defaultClothingItems, latitude, longitude } from '../../utils/constants';
 import {CurrentTempUnitContext} from '../contexts/CurrentTempUnitContext';
 import AddItemModal from '../AddItemModal/AddItemModal';
 
@@ -23,6 +23,7 @@ function App() {
     const [activeModal, setActiveModal] = useState('');
     const [selectedCard, setSelectedCard] = useState({})
     const [currentTempUnit, setToggleUnitSwitch] = useState("F");
+    const [clothingItem, setClothingItems] = useState(defaultClothingItems)
 
     const handleAddClick = () => {
       setActiveModal('add');
@@ -39,6 +40,9 @@ function App() {
 
     const onAddItemSubmit = (values) => {
       console.log(values)
+      setClothingItems([clothingItem, ...defaultClothingItems]);
+      console.log(defaultClothingItems);
+      setActiveModal('');
     }
 
     const handleTempToggleChange = (e) => {
@@ -53,7 +57,6 @@ function App() {
       getWeather(APIkey, latitude, longitude).then((data) => {
         const filterData = filterWeatherData(data);
         setWeatherData(filterData);
-        console.log(filterData.temp)
       }).catch((res) => {
         console.error(res);
     })
