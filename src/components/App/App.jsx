@@ -67,7 +67,7 @@ function App() {
                 
                 <Routes>
                   <Route path='/' element={<Main weatherData={weatherData} handleImageClick={handleImageClick} />} />
-                  <Route path='/profile' element={<Profile weatherData={weatherData} handleImageClick={handleImageClick} />} />
+                  <Route path='/profile' element={<Profile weatherData={weatherData} handleImageClick={handleImageClick} handleAddClick={handleAddClick} />} />
                 </Routes>
 
                 <Footer />
