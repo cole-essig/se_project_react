@@ -7,7 +7,7 @@ function AddItemModal({ handleModalClose, isOpen, onAddItem}) {
       setName(e.target.value);
     }
 
-    const [link, setURL] = useState('');
+    const [imageUrl, setURL] = useState('');
     const handleLinkChange = (e) => {
       setURL(e.target.value);
     }
@@ -18,7 +18,7 @@ function AddItemModal({ handleModalClose, isOpen, onAddItem}) {
     }
     
     const handleSubmit = (e) => {
-        onAddItem({ name, link, weather });
+        onAddItem({ name, imageUrl, weather });
     }
     
     return (
@@ -46,7 +46,7 @@ function AddItemModal({ handleModalClose, isOpen, onAddItem}) {
                     id='imageURL'
                     placeholder='Image URL'
                     onChange={handleLinkChange}
-                    value={link}
+                    value={imageUrl}
                 />
             </label>
             <fieldset className="modal__radio-buttons">

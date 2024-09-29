@@ -51,6 +51,10 @@
     height: 60vh;
   }
 
+  .modal__footer {
+    position: relative;
+  }
+
   .modal__footer_caption {
     font-weight: 700;
     font-size: 20px;
@@ -65,4 +69,18 @@
     line-height: 1.2;
     font-family: "Cabinet Grotesk-med", 'Times New Roman', Times, serif;
     margin: 0 auto 32px 32px;
+  }  
+
+  .modal__delete {
+    position: absolute;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.2;
+    font-family: "Cabinet Grotesk-med", 'Times New Roman', Times, serif;
+    color: #FF4D00;
+    cursor: pointer;
+    top: 20px;
+    right: 32px;
+    border: none;
+    background-color: transparent;
   }

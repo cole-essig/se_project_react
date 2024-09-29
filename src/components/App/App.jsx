@@ -10,7 +10,7 @@ import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import { APIkey, defaultClothingItems, latitude, longitude } from '../../utils/constants';
 import {CurrentTempUnitContext} from '../contexts/CurrentTempUnitContext';
 import AddItemModal from '../AddItemModal/AddItemModal';
-import { getItems } from '../../utils/api';
+import { getItems, setItems, deleteItems } from '../../utils/api';
 
 function App() {
 
@@ -40,10 +40,17 @@ function App() {
     }
 
     const onAddItemSubmit = (values) => {
-      console.log(values)
-      setClothingItems([values, ...defaultClothingItems]);
-      console.log(defaultClothingItems);
-      setActiveModal('');
+      const newCard = {
+        name: values.name,
+        weather: values.weather,
+        imageUrl: values.imageUrl
+      }
+      setItems(newCard)
+      .then((res) => {
+        setClothingItems([newCard, ...clothingItems]);
+        console.log(res);
+      }).catch(console.error).finally(setActiveModal(''));
+      
     }
 
     const handleTempToggleChange = (e) => {
@@ -52,6 +59,14 @@ function App() {
       } else {
           setToggleUnitSwitch('C')
       }
+    }
+
+    const handleCardDelete = () => {
+       deleteItems(selectedCard._id)
+       .then((res) => {
+        console.log(res);
+        setActiveModal('');
+       }).catch(console.error)
     }
 
     useEffect(() => {
@@ -89,6 +104,7 @@ function App() {
               isOpen={activeModal === 'preview'}
               handleModalClose={closeActiveModal}
               card={selectedCard}
+              handleCardDelete={handleCardDelete}
             />}
           </CurrentTempUnitContext.Provider>
         </div>
