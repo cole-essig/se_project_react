@@ -10,6 +10,7 @@ import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import { APIkey, defaultClothingItems, latitude, longitude } from '../../utils/constants';
 import {CurrentTempUnitContext} from '../contexts/CurrentTempUnitContext';
 import AddItemModal from '../AddItemModal/AddItemModal';
+import { getItems } from '../../utils/api';
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
     const [activeModal, setActiveModal] = useState('');
     const [selectedCard, setSelectedCard] = useState({})
     const [currentTempUnit, setToggleUnitSwitch] = useState("F");
-    const [clothingItem, setClothingItems] = useState(defaultClothingItems)
+    const [clothingItems, setClothingItems] = useState([])
 
     const handleAddClick = () => {
       setActiveModal('add');
@@ -40,7 +41,7 @@ function App() {
 
     const onAddItemSubmit = (values) => {
       console.log(values)
-      setClothingItems([clothingItem, ...defaultClothingItems]);
+      setClothingItems([values, ...defaultClothingItems]);
       console.log(defaultClothingItems);
       setActiveModal('');
     }
@@ -52,6 +53,14 @@ function App() {
           setToggleUnitSwitch('C')
       }
     }
+
+    useEffect(() => {
+     getItems()
+     .then((data) => {
+      console.log(data);
+      setClothingItems(data)
+     }).catch(console.error)
+    }, []);
 
     useEffect(() => {
       getWeather(APIkey, latitude, longitude).then((data) => {
@@ -69,8 +78,8 @@ function App() {
                 <Header handleAddClick={handleAddClick} weatherData={weatherData} />
                 
                 <Routes>
-                  <Route path='/' element={<Main weatherData={weatherData} handleImageClick={handleImageClick} />} />
-                  <Route path='/profile' element={<Profile weatherData={weatherData} handleImageClick={handleImageClick} handleAddClick={handleAddClick} />} />
+                  <Route path='/' element={<Main weatherData={weatherData} handleImageClick={handleImageClick} clothingItems={clothingItems} />} />
+                  <Route path='/profile' element={<Profile weatherData={weatherData} handleImageClick={handleImageClick} handleAddClick={handleAddClick} clothingItems={clothingItems} />} />
                 </Routes>
 
                 <Footer />

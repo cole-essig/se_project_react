@@ -12,14 +12,13 @@ function AddItemModal({ handleModalClose, isOpen, onAddItem}) {
       setURL(e.target.value);
     }
 
-    const [weatherType, setWeatherType] = useState('');
+    const [weather, setWeatherType] = useState('');
     const handleRadioClick = (e) => {
         setWeatherType(e.target.value);
     }
     
     const handleSubmit = (e) => {
-        e.preventDefault();
-        onAddItem({ name, link, weatherType });
+        onAddItem({ name, link, weather });
     }
     
     return (
