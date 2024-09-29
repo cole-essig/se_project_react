@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import './WeatherCard.css'
 import sunny from '../../assets/day/clear-day.svg'
 import { weatherOptions, defaultWeatherOption } from '../../utils/constants';
-import { CurrentTempUnitContext } from '../contexts/CurrentTempUnitContext';
+import { CurrentTempUnitContext } from '../../utils/contexts/CurrentTempUnitContext';
 
 function WeatherCard({ weatherData }) {
     const filteredWeatherCard = weatherOptions.filter((options) => {

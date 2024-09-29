@@ -7,8 +7,8 @@ import Profile from '../Profile/Profile';
 import ItemModal from '../ItemModal/ItemModal';
 import Footer from '../Footer/Footer';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
-import { APIkey, defaultClothingItems, latitude, longitude } from '../../utils/constants';
-import {CurrentTempUnitContext} from '../contexts/CurrentTempUnitContext';
+import { APIkey, latitude, longitude } from '../../utils/constants';
+import {CurrentTempUnitContext} from '../../utils/contexts/CurrentTempUnitContext';
 import AddItemModal from '../AddItemModal/AddItemModal';
 import { getItems, setItems, deleteItems } from '../../utils/api';
 
