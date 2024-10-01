@@ -41,9 +41,11 @@ function App() {
 
     const onAddItemSubmit = (values) => {
       const newCard = {
+        _id: clothingItems.length + 1,
         name: values.name,
         weather: values.weather,
-        imageUrl: values.imageUrl
+        imageUrl: values.imageUrl,
+        _id: clothingItems.length + 1,
       }
       setItems(newCard)
       .then((res) => {
@@ -65,8 +67,13 @@ function App() {
        deleteItems(selectedCard._id)
        .then((res) => {
         console.log(res);
+        onScreenDelete(selectedCard._id);
         setActiveModal('');
        }).catch(console.error)
+    }
+
+    const onScreenDelete = (cardId) => {
+      setClothingItems(clothingItems.filter(item => item._id !== cardId))
     }
 
     useEffect(() => {
@@ -94,7 +101,7 @@ function App() {
                 
                 <Routes>
                   <Route path='/' element={<Main weatherData={weatherData} handleImageClick={handleImageClick} clothingItems={clothingItems} />} />
-                  <Route path='/profile' element={<Profile weatherData={weatherData} handleImageClick={handleImageClick} handleAddClick={handleAddClick} clothingItems={clothingItems} />} />
+                  <Route path='/profile' element={<Profile handleImageClick={handleImageClick} handleAddClick={handleAddClick} clothingItems={clothingItems} />} />
                 </Routes>
 
                 <Footer />
