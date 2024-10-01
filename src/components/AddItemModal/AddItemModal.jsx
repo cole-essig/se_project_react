@@ -20,12 +20,17 @@ function AddItemModal({ handleModalClose, isOpen, onAddItem}) {
     const handleSubmit = (e) => {
         onAddItem({ name, imageUrl, weather });
     }
+
+    const title = 'Add garmet';
+    const button = 'New garmet'
     
     return (
         <ModalWithForm 
         handleModalClose={handleModalClose}
         isOpen={isOpen}
         handleSubmit={handleSubmit}
+        title={title}
+        button={button}
         >
             <label htmlFor='name' className='modal__label'>
                 Name{" "}

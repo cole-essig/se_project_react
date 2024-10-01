@@ -4,7 +4,6 @@ import ItemCard from "../ItemCard/ItemCard";
 
 function ClothesSection({ handleImageClick, handleAddNewClick, clothingItems }) {
     return (
-        <>
             <div className="clothes-section">
               <div className="clothes-section__header">
                 <p className="clothes-section__description">Your Items</p>
@@ -16,7 +15,6 @@ function ClothesSection({ handleImageClick, handleAddNewClick, clothingItems }) 
                     })}
                 </ul>
             </div>
-        </>
     )
 }
 

@@ -41,17 +41,17 @@ function App() {
 
     const onAddItemSubmit = (values) => {
       const newCard = {
-        _id: clothingItems.length + 1,
+        _id: Math.random(),
         name: values.name,
         weather: values.weather,
         imageUrl: values.imageUrl,
-        _id: clothingItems.length + 1,
       }
       setItems(newCard)
       .then((res) => {
         setClothingItems([newCard, ...clothingItems]);
         console.log(res);
-      }).catch(console.error).finally(setActiveModal(''));
+        closeActiveModal;
+      }).catch(console.error);
       
     }
 
@@ -68,7 +68,7 @@ function App() {
        .then((res) => {
         console.log(res);
         onScreenDelete(selectedCard._id);
-        setActiveModal('');
+        closeActiveModal;
        }).catch(console.error)
     }
 
