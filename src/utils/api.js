@@ -2,11 +2,13 @@ const baseURL = 'http://localhost:3001';
 const contentType = {
     "Content-Type": "application/json",
   }
+ 
+function checkResponse(res) {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+}
 
 function getItems() {
-    return fetch(baseURL + '/items').then((res) => {
-        return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    })
+    return fetch(baseURL + '/items').then(checkResponse)
 }
 
 function setItems(card) {
@@ -18,17 +20,13 @@ function setItems(card) {
         weather: card.weather,
         imageUrl: card.imageUrl,
       }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-})
+  }).then(checkResponse)
 }
 
 function deleteItems(ID) {
     return fetch(baseURL + '/items/' + ID, {
         method: "DELETE"
-    }).then((res) => {
-        return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-    })
+    }).then(checkResponse)
 }
 
 export { getItems, setItems, deleteItems }
