@@ -16,6 +16,7 @@ function setItems(card) {
     method: 'POST',
     headers: contentType,
     body: JSON.stringify({
+        _id: card._id,
         name: card.name,
         weather: card.weather,
         imageUrl: card.imageUrl,

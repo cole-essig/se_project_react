@@ -50,7 +50,7 @@ function App() {
       .then((res) => {
         setClothingItems([newCard, ...clothingItems]);
         console.log(res);
-        closeActiveModal;
+        closeActiveModal();
       }).catch(console.error);
       
     }
@@ -64,11 +64,12 @@ function App() {
     }
 
     const handleCardDelete = () => {
+      console.log(selectedCard._id)
        deleteItems(selectedCard._id)
        .then((res) => {
         console.log(res);
         onScreenDelete(selectedCard._id);
-        closeActiveModal;
+        closeActiveModal();
        }).catch(console.error)
     }
 
