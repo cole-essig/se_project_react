@@ -3,7 +3,7 @@ const contentType = {
     "Content-Type": "application/json",
   }
  
-function checkResponse(res) {
+export function checkResponse(res) {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
@@ -29,5 +29,7 @@ function deleteItems(ID) {
         method: "DELETE"
     }).then(checkResponse)
 }
+
+// json-server --watch db.json --id _id --port 3001 Server terminal code
 
 export { getItems, setItems, deleteItems }
