@@ -114,6 +114,8 @@ function App() {
               card={selectedCard}
               handleCardDelete={handleCardDelete}
             />}
+            {activeModal === 'login'}
+            {activeModal === 'register'}
           </CurrentTempUnitContext.Provider>
         </div>
     )
