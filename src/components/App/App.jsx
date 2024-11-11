@@ -6,6 +6,8 @@ import Main from '../Main/Main'
 import Profile from '../Profile/Profile';
 import ItemModal from '../ItemModal/ItemModal';
 import Footer from '../Footer/Footer';
+import LoginModal from '../LoginModal/LoginModal';
+import RegisterModal from '../RegisterModal/RegisterModal';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import { APIkey, latitude, longitude } from '../../utils/constants';
 import {CurrentTempUnitContext} from '../../utils/contexts/CurrentTempUnitContext';
@@ -77,6 +79,18 @@ function App() {
       setClothingItems(clothingItems.filter(item => item._id !== cardId))
     }
 
+    const onLogIn = () => {
+      console.log("HeyHey")
+    }
+
+    const onRegister = () => {
+      console.log("HeyHeyHey")
+    }
+
+    const switchActiveModal = () => {
+      setActiveModal('register');
+    }
+
     useEffect(() => {
      getItems()
      .then((data) => {
@@ -92,6 +106,10 @@ function App() {
       }).catch((res) => {
         console.error(res);
     })
+    }, []);
+
+    useEffect(() => {
+      setActiveModal('login');
     }, []);
 
     return (
@@ -114,8 +132,8 @@ function App() {
               card={selectedCard}
               handleCardDelete={handleCardDelete}
             />}
-            {activeModal === 'login'}
-            {activeModal === 'register'}
+            {activeModal === 'login' && <LoginModal handleModalClose={closeActiveModal} isOpen={activeModal === 'login'} onLogIn={onLogIn} switchActiveModal={switchActiveModal} />}
+            {activeModal === 'register' && <RegisterModal handleModalClose={closeActiveModal} isOpen={activeModal === 'register'} onRegister={onRegister} />}
           </CurrentTempUnitContext.Provider>
         </div>
     )

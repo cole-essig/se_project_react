@@ -9,6 +9,7 @@ function ModalWithForm({ children, handleModalClose, isOpen, handleSubmit, title
       <form className='modal__form' onSubmit={handleSubmit}>
           {children}
           <button className="modal__submit-button" type='submit'>{button}</button>
+          {/* needs second button here for the login modal or register */}
       </form>
     </div>
   </div>
