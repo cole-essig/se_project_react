@@ -87,7 +87,13 @@ function App() {
       console.log("HeyHeyHey")
     }
 
-    const switchActiveModal = () => {
+    const switchRegisterModal = () => {
+      closeActiveModal();
+      setActiveModal('login');
+    }
+
+    const switchLoginModal = () => {
+      closeActiveModal();
       setActiveModal('register');
     }
 
@@ -132,8 +138,8 @@ function App() {
               card={selectedCard}
               handleCardDelete={handleCardDelete}
             />}
-            {activeModal === 'login' && <LoginModal handleModalClose={closeActiveModal} isOpen={activeModal === 'login'} onLogIn={onLogIn} switchActiveModal={switchActiveModal} />}
-            {activeModal === 'register' && <RegisterModal handleModalClose={closeActiveModal} isOpen={activeModal === 'register'} onRegister={onRegister} />}
+            {activeModal === 'login' && <LoginModal handleModalClose={closeActiveModal} isOpen={activeModal === 'login'} onLogIn={onLogIn} switchActiveModal={switchLoginModal} />}
+            {activeModal === 'register' && <RegisterModal handleModalClose={closeActiveModal} isOpen={activeModal === 'register'} onRegister={onRegister} switchActiveModal={switchRegisterModal} />}
           </CurrentTempUnitContext.Provider>
         </div>
     )

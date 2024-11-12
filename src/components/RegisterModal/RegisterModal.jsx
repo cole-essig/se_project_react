@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import "./RegisterModal.css";
 
-function RegisterModal({ handleModalClose, isOpen, onRegister }) {
+function RegisterModal({ handleModalClose, isOpen, onRegister, switchActiveModal }) {
     const [email, setEmail] = useState('');
     const handleEmailChange = (e) => {
       setEmail(e.target.value);
@@ -31,6 +31,7 @@ function RegisterModal({ handleModalClose, isOpen, onRegister }) {
 
     const title = 'Sign Up';
     const button = 'Sign Up';
+    const switchButton = 'or Log In'
     return (
     <ModalWithForm
         handleModalClose={handleModalClose}
@@ -38,6 +39,8 @@ function RegisterModal({ handleModalClose, isOpen, onRegister }) {
         handleSubmit={handleSubmit}
         title={title}
         button={button}
+        switchButton={switchButton}
+        handleModalSwitch={switchActiveModal}
     >
         <label htmlFor='email' className='modal__label'>
                 Email{" "}

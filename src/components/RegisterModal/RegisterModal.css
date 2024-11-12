@@ -85,40 +85,6 @@
   text-overflow: clip;
 }
 
-.modal__radio-buttons {
-    display: flex;
-    flex-direction: column;
-    border: none;
-    padding: 0;
-    margin-top: 24px;
-  }
-
-.modal__legend {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 1.2;
-    font-family: "Cabinet Grotesk-med", 'Times New Roman', Times, serif;
-}
-
-.modal__label_type_radio {
-    margin: 8px 0 0;
-    color: rgba(0, 0, 0, .5);
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 1.2;
-    font-family: "Cabinet Grotesk-med", 'Times New Roman', Times, serif;
-    transition: color .1s linear;
-}
-
-.modal__label_type_radio:has(:checked) {
-    color: rgba(0, 0, 0, 1);
-  }
-
-.modal__radio-input {
-    margin-right: 4px;
-    accent-color: #000;
-}
-
 .modal__submit-button {
   margin-top: 32px; 
   max-width: 124px;
@@ -133,4 +99,23 @@
   background-color: rgba(0, 0, 0, 1);
   border: none;
   cursor: pointer;
+}
+
+.modal__switch-button {
+  max-width: 100px;
+  background: #fff;
+  border: 0;
+  cursor: pointer;
+  line-height: 1.5;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: "Cabinet Grotesk-med", 'Times New Roman', Times, serif;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.25s, opacity 0.25s linear;
+}
+
+.modal_switch-on {
+  visibility: visible;
+  opacity: 1;
 }

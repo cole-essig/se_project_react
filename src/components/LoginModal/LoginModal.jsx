@@ -19,12 +19,9 @@ function LoginModal({ handleModalClose, isOpen, onLogIn, switchActiveModal}) {
       handleModalClose;
     }
 
-    const switchToRegister = () => {
-        switchActiveModal;
-    }
-
     const title = 'Log in';
     const button = 'Log in';
+    const switchButton = 'or Sign Up'
     return (
     <ModalWithForm
         handleModalClose={handleModalClose}
@@ -32,6 +29,8 @@ function LoginModal({ handleModalClose, isOpen, onLogIn, switchActiveModal}) {
         handleSubmit={handleSubmit}
         title={title}
         button={button}
+        switchButton={switchButton}
+        handleModalSwitch={switchActiveModal}
     >
         <label htmlFor='email' className='modal__label'>
                 Email{" "}
