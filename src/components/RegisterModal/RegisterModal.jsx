@@ -18,17 +18,17 @@ function RegisterModal({ handleModalClose, isOpen, onRegister, switchActiveModal
       setName(e.target.value);
     }
 
-    const [avatarUrl, setURL] = useState('');
+    const [avatar, setURL] = useState('');
     const handleAvatarChange = (e) => {
       setURL(e.target.value);
     }
     
     const handleSubmit = (e) => {
       e.preventDefault();
-      onRegister();
-      handleModalClose();
+      onRegister({ name, avatar, email, password });
     }
 
+    console.log(name, avatar, email, password)
     const title = 'Sign Up';
     const button = 'Sign Up';
     const switchButton = 'or Log In'
@@ -42,28 +42,6 @@ function RegisterModal({ handleModalClose, isOpen, onRegister, switchActiveModal
         switchButton={switchButton}
         handleModalSwitch={switchActiveModal}
     >
-        <label htmlFor='email' className='modal__label'>
-                Email{" "}
-                <input 
-                    type='email'
-                    className='modal__input'
-                    id='email'
-                    placeholder='ex.email'
-                    value={email}
-                    onChange={handleEmailChange}
-                />
-            </label>
-            <label htmlFor='password' className='modal__label'>
-                Password{" "}
-                <input 
-                    type='password'
-                    className='modal__input'
-                    id='password'
-                    placeholder='Password'
-                    onChange={handlePasswordChange}
-                    value={password}
-                />
-            </label>
             <label htmlFor='name' className='modal__label'>
                 Name{" "}
                 <input 
@@ -83,7 +61,29 @@ function RegisterModal({ handleModalClose, isOpen, onRegister, switchActiveModal
                     id='avatarURL'
                     placeholder='Avatar URL'
                     onChange={handleAvatarChange}
-                    value={avatarUrl}
+                    value={avatar}
+                />
+            </label>
+            <label htmlFor='email' className='modal__label'>
+                Email{" "}
+                <input 
+                    type='email'
+                    className='modal__input'
+                    id='email'
+                    placeholder='ex.email'
+                    value={email}
+                    onChange={handleEmailChange}
+                />
+            </label>
+            <label htmlFor='password' className='modal__label'>
+                Password{" "}
+                <input 
+                    type='password'
+                    className='modal__input'
+                    id='password'
+                    placeholder='Password'
+                    onChange={handlePasswordChange}
+                    value={password}
                 />
             </label>
     </ModalWithForm>

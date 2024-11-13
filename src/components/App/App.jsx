@@ -9,11 +9,12 @@ import Footer from '../Footer/Footer';
 import LoginModal from '../LoginModal/LoginModal';
 import RegisterModal from '../RegisterModal/RegisterModal';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import AddItemModal from '../AddItemModal/AddItemModal';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import { APIkey, latitude, longitude } from '../../utils/constants';
 import {CurrentTempUnitContext} from '../../utils/contexts/CurrentTempUnitContext';
-import AddItemModal from '../AddItemModal/AddItemModal';
 import { getItems, setItems, deleteItems } from '../../utils/api';
+import { signin, signup, checkToken } from '../../utils/auth';
 
 function App() {
 
@@ -81,12 +82,29 @@ function App() {
       setClothingItems(clothingItems.filter(item => item._id !== cardId))
     }
 
-    const onLogIn = () => {
+    const onLogIn = ({ name, password }) => {
       console.log("HeyHey")
+      signin({ name, password })
+      .then((res) => {
+        console.log(res);
+        closeActiveModal();
+        localStorage.setItem("jwt", res.token);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
     }
 
-    const onRegister = () => {
+    const onRegister = ({ name, avatar, email, password }) => {
       console.log("HeyHeyHey")
+      signup({ name, avatar, email, password })
+      .then((res) => {
+        console.log(res);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      })
     }
 
     const switchRegisterModal = () => {
@@ -117,7 +135,18 @@ function App() {
     }, []);
 
     useEffect(() => {
-      setActiveModal('login');
+      const token = localStorage.getItem('jwt')
+      if (!token) {
+        setActiveModal('login');
+        return;
+      }
+      checkToken(token)
+      .then((res) => {
+        console.log(res);
+        setIsLoggedIn(true);
+        setActiveModal('')
+      })
+      
     }, []);
 
     return (
@@ -130,7 +159,7 @@ function App() {
                   <Route path='/' element={<Main weatherData={weatherData} handleImageClick={handleImageClick} clothingItems={clothingItems} />} />
                   <Route path='/profile' 
                     element={
-                    <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <ProtectedRoute isLoggedIn={isLoggedIn} reload={setActiveModal}>
                       <Profile handleImageClick={handleImageClick} handleAddClick={handleAddClick} clothingItems={clothingItems} />
                     </ProtectedRoute>} />
                   <Route path='*' element={<Navigate to='/' replace />} />

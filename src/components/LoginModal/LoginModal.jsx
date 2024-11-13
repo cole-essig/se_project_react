@@ -15,8 +15,7 @@ function LoginModal({ handleModalClose, isOpen, onLogIn, switchActiveModal}) {
     
     const handleSubmit = (e) => {
       e.preventDefault();
-      onLogIn();
-      handleModalClose;
+      onLogIn({ email, password });
     }
 
     const title = 'Log in';

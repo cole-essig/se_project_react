@@ -29,4 +29,15 @@ function signin ({ name, password }) {
     .then(checkResponse)
   }
 
-  export { signin, signup }
+  function checkToken(token) {
+    return fetch(baseURL + '/users/me', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      }
+    })
+    .then(checkResponse)
+  }
+
+  export { signin, signup, checkToken }
