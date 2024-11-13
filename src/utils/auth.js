@@ -8,7 +8,7 @@ export function checkResponse(res) {
 }
 
 function signup ({ name, avatar, email, password }) {
-  return fetch(baseURL + '/users', {
+  return fetch(baseURL + '/signup', {
     method: 'POST',
     headers: {
         contentType
@@ -19,7 +19,7 @@ function signup ({ name, avatar, email, password }) {
 }
 
 function signin ({ name, password }) {
-    return fetch(baseURL + '/users', {
+    return fetch(baseURL + '/signin', {
       method: 'POST',
       headers: {
           contentType
@@ -28,3 +28,5 @@ function signin ({ name, password }) {
     })
     .then(checkResponse)
   }
+
+  export { signin, signup }
