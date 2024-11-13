@@ -10,21 +10,17 @@ export function checkResponse(res) {
 function signup ({ name, avatar, email, password }) {
   return fetch(baseURL + '/signup', {
     method: 'POST',
-    headers: {
-        contentType
-    },
+    headers: contentType,
     body: JSON.stringify({ name, avatar, email, password })
   })
   .then(checkResponse)
 }
 
-function signin ({ name, password }) {
+function signin ({ email, password }) {
     return fetch(baseURL + '/signin', {
       method: 'POST',
-      headers: {
-          contentType
-      },
-      body: JSON.stringify({ name, password })
+      headers: contentType,
+      body: JSON.stringify({ email, password })
     })
     .then(checkResponse)
   }

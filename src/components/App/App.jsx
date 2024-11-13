@@ -82,9 +82,9 @@ function App() {
       setClothingItems(clothingItems.filter(item => item._id !== cardId))
     }
 
-    const onLogIn = ({ name, password }) => {
+    const onLogIn = ({ email, password }) => {
       console.log("HeyHey")
-      signin({ name, password })
+      signin({ email, password })
       .then((res) => {
         console.log(res);
         closeActiveModal();
