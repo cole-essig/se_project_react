@@ -9,6 +9,7 @@ import Footer from '../Footer/Footer';
 import LoginModal from '../LoginModal/LoginModal';
 import RegisterModal from '../RegisterModal/RegisterModal';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import EditProfileModal from '../EditProfileModal/EditProfileModal';
 import AddItemModal from '../AddItemModal/AddItemModal';
 import avatar from '../../assets/avatar.svg'
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
@@ -196,6 +197,7 @@ function App() {
             />}
             {activeModal === 'login' && <LoginModal handleModalClose={closeActiveModal} isOpen={activeModal === 'login'} onLogIn={onLogIn} switchActiveModal={switchLoginModal} />}
             {activeModal === 'register' && <RegisterModal handleModalClose={closeActiveModal} isOpen={activeModal === 'register'} onRegister={onRegister} switchActiveModal={switchRegisterModal} />}
+            {activeModal === 'edit' && <EditProfileModal handleModalClose={closeActiveModal} isOpen={activeModal === 'edit'} switchActiveModal={switchRegisterModal} />}
             </CurrentUserContext.Provider>
           </CurrentTempUnitContext.Provider>
         </div>

@@ -28,7 +28,6 @@ function RegisterModal({ handleModalClose, isOpen, onRegister, switchActiveModal
       onRegister({ name, avatar, email, password });
     }
 
-    console.log(name, avatar, email, password)
     const title = 'Sign Up';
     const button = 'Sign Up';
     const switchButton = 'or Log In'
