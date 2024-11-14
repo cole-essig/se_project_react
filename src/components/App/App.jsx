@@ -13,6 +13,7 @@ import AddItemModal from '../AddItemModal/AddItemModal';
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import { APIkey, latitude, longitude } from '../../utils/constants';
 import {CurrentTempUnitContext} from '../../utils/contexts/CurrentTempUnitContext';
+import { CurrentUserContext } from '../../utils/contexts/CurrentuserContext';
 import { getItems, setItems, deleteItems } from '../../utils/api';
 import { signin, signup, checkToken } from '../../utils/auth';
 
@@ -30,6 +31,7 @@ function App() {
     const [currentTempUnit, setToggleUnitSwitch] = useState("F");
     const [clothingItems, setClothingItems] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [currentUser, setCurrentUser] = useState('');
 
     const handleAddClick = () => {
       setActiveModal('add');
@@ -152,6 +154,7 @@ function App() {
     return (
         <div className='page'>
           <CurrentTempUnitContext.Provider value={{currentTempUnit, handleTempToggleChange}}>
+            <CurrentUserContext.Provider value={currentUser} >
             <div className='page__content'>
                 <Header handleAddClick={handleAddClick} weatherData={weatherData} />
                 
@@ -176,6 +179,7 @@ function App() {
             />}
             {activeModal === 'login' && <LoginModal handleModalClose={closeActiveModal} isOpen={activeModal === 'login'} onLogIn={onLogIn} switchActiveModal={switchLoginModal} />}
             {activeModal === 'register' && <RegisterModal handleModalClose={closeActiveModal} isOpen={activeModal === 'register'} onRegister={onRegister} switchActiveModal={switchRegisterModal} />}
+            </CurrentUserContext.Provider>
           </CurrentTempUnitContext.Provider>
         </div>
     )
