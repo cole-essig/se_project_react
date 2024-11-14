@@ -16,7 +16,7 @@ import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import { APIkey, latitude, longitude } from '../../utils/constants';
 import {CurrentTempUnitContext} from '../../utils/contexts/CurrentTempUnitContext';
 import { CurrentUserContext } from '../../utils/contexts/CurrentuserContext';
-import { getItems, setItems, deleteItems } from '../../utils/api';
+import { getItems, setItems, deleteItems, addCardLike, removeCardLike } from '../../utils/api';
 import { signin, signup, checkToken } from '../../utils/auth';
 
 function App() {
@@ -50,6 +50,27 @@ function App() {
     const handleImageClick = (card) => {
       setActiveModal('preview')
       setSelectedCard(card)
+    }
+
+    const handleCardLike = ({ ID, isLiked }) => {
+      !isLiked ? addCardLike(ID)
+                 .then((updatedCard) => {
+                  setClothingItems((clothingItems) => {
+                    clothingItems.map((item) => (item._id === ID ? updatedCard : item))
+                  })
+                 })
+                 .catch((err) => {
+                  console.error(err)
+                 })
+               : removeCardLike(ID)
+               .then((updatedCard) => {
+                setClothingItems((clothingItems) => {
+                  clothingItems.map((item) => (item._id === ID ? updatedCard : item))
+                })
+               })
+               .catch((err) => {
+                console.error(err)
+               })
     }
 
     const onAddItemSubmit = (values) => {
@@ -151,7 +172,6 @@ function App() {
     }, []);
 
     useEffect(() => {
-      signout();
       setCurrentUser({_id: "", user: '', avatar: avatar});
       const token = localStorage.getItem('jwt')
       const localUser = localStorage.getItem('user');
@@ -182,7 +202,7 @@ function App() {
                 <Header handleAddClick={handleAddClick} weatherData={weatherData} />
                 
                 <Routes>
-                  <Route path='/' element={<Main weatherData={weatherData} handleImageClick={handleImageClick} clothingItems={clothingItems} />} />
+                  <Route path='/' element={<Main weatherData={weatherData} handleImageClick={handleImageClick} clothingItems={clothingItems} onCardLike={handleCardLike} />} />
                   <Route path='/profile' 
                     element={
                     <ProtectedRoute isLoggedIn={isLoggedIn} reload={setActiveModal}>

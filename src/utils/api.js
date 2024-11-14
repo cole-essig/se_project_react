@@ -32,6 +32,18 @@ function deleteItems(ID) {
     }).then(checkResponse)
 }
 
-// json-server --watch db.json --id _id --port 3001 Server terminal code
+function addCardLike(ID) {
+  return fetch(baseURL + '/items/' + ID + "/likes", {
+    method: 'PUT',
+    headers: contentType,
+  }).then(checkResponse)
+}
 
-export { getItems, setItems, deleteItems }
+function removeCardLike(ID) {
+  return fetch(baseURL + '/items/' + ID + "/likes", {
+    method: 'DELETE',
+    headers: contentType,
+  }).then(checkResponse)
+}
+
+export { getItems, setItems, deleteItems, addCardLike, removeCardLike }

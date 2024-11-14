@@ -3,8 +3,10 @@ import './SideBar.css'
 import { useContext } from 'react';
 import { CurrentUserContext } from '../../utils/contexts/CurrentuserContext';
 
-function SideBar(handleProfileChange, handleLogout) {
+function SideBar({handleProfileChange, handleLogout}) {
   const currentUser = useContext(CurrentUserContext);
+  console.log(handleLogout);
+  console.log(handleProfileChange)
     return (
        <>
         <div className="sidebar">

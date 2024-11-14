@@ -1,10 +1,13 @@
 export default ItemCard;
 import "./ItemCard.css";
 
-function ItemCard({ item, onCardClick }) {
-  
+function ItemCard({ item, onCardClick, onCardLike }) {
     const handleCardClick = () => {
         onCardClick(item);
+    }
+
+    const handleLike = () => {
+      onCardLike({ ID: item._id, isLike: item.likes})
     }
 
     return (

@@ -4,7 +4,6 @@ import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 
 function Profile({ handleImageClick, handleAddClick, clothingItems, handleProfileChange, handleLogout }) {
-  console.log(handleLogout);
     return (
         <div className="profile">
           <section className="profile__sidebar">
