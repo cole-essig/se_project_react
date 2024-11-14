@@ -1,6 +1,9 @@
-import "./ItemModal.css"
+import "./ItemModal.css";
+import { CurrentUserContext } from '../../utils/contexts/CurrentuserContext';
 
 function ItemModal({ isOpen, handleModalClose, card, handleCardDelete }) {
+  const currentUser = useContext(CurrentUserContext);
+  const isOwn = card._id === currentUser._id;
   return (
    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
      <div className="modal__content_type_image">
@@ -9,7 +12,7 @@ function ItemModal({ isOpen, handleModalClose, card, handleCardDelete }) {
       <div className="modal__footer">
           <h2 className="modal__footer_caption">{card.name}</h2>
           <p className="modal__weather">Weather: {card.weather}</p>
-          <button type="button" className="modal__delete" onClick={handleCardDelete}>Delete item</button>
+          <button type="button" className={`modal__delete ${isOwn ? 'modal_delete-on' : ''}`} onClick={handleCardDelete}>Delete item</button>
       </div>
      </div>
    </div>

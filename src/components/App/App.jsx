@@ -10,6 +10,7 @@ import LoginModal from '../LoginModal/LoginModal';
 import RegisterModal from '../RegisterModal/RegisterModal';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AddItemModal from '../AddItemModal/AddItemModal';
+import avatar from '../../assets/avatar.svg'
 import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import { APIkey, latitude, longitude } from '../../utils/constants';
 import {CurrentTempUnitContext} from '../../utils/contexts/CurrentTempUnitContext';
@@ -31,7 +32,7 @@ function App() {
     const [currentTempUnit, setToggleUnitSwitch] = useState("F");
     const [clothingItems, setClothingItems] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [currentUser, setCurrentUser] = useState('');
+    const [currentUser, setCurrentUser] = useState({_id: '', user: "", avatar: ""});
 
     const handleAddClick = () => {
       setActiveModal('add');
@@ -85,12 +86,14 @@ function App() {
     }
 
     const onLogIn = ({ email, password }) => {
-      console.log("HeyHey")
       signin({ email, password })
       .then((res) => {
-        console.log(res);
+        setIsLoggedIn(true);
+        setCurrentUser({_id: res.user._id, user: res.user.name, avatar: res.user.avatar});
+        setActiveModal('')
         closeActiveModal();
         localStorage.setItem("jwt", res.token);
+        localStorage.setItem('user', res.user);
       })
       .catch((err) => {
         console.error(err);
@@ -98,15 +101,22 @@ function App() {
     }
 
     const onRegister = ({ name, avatar, email, password }) => {
-      console.log("HeyHeyHey")
       signup({ name, avatar, email, password })
       .then((res) => {
-        console.log(res);
+        setIsLoggedIn(true);
+        setCurrentUser({user: res.name, avatar: res.avatar});
+        setActiveModal('')
         closeActiveModal();
       })
       .catch((err) => {
         console.error(err);
       })
+    }
+
+    const signout = () => {
+      localStorage.removeItem('jwt');
+      setCurrentUser({user: '', avatar: ''});
+      setIsLoggedIn(false);
     }
 
     const switchRegisterModal = () => {
@@ -122,7 +132,6 @@ function App() {
     useEffect(() => {
      getItems()
      .then((data) => {
-      console.log(data);
       setClothingItems(data)
      }).catch(console.error)
     }, []);
@@ -137,24 +146,32 @@ function App() {
     }, []);
 
     useEffect(() => {
+      setCurrentUser({_id: "", user: '', avatar: avatar});
       const token = localStorage.getItem('jwt')
+      const localUser = localStorage.getItem('user');
       if (!token) {
         setActiveModal('login');
         return;
       }
       checkToken(token)
       .then((res) => {
-        console.log(res);
         setIsLoggedIn(true);
-        setActiveModal('')
+        setCurrentUser({
+          _id: localUser._id,
+          user: localUser.name,
+          avatar: localUser.avatar
+        });
+        setActiveModal('');
       })
-      
+      .catch((err) => {
+        console.error(err)
+      })
     }, []);
 
     return (
         <div className='page'>
           <CurrentTempUnitContext.Provider value={{currentTempUnit, handleTempToggleChange}}>
-            <CurrentUserContext.Provider value={currentUser} >
+            <CurrentUserContext.Provider value={currentUser}>
             <div className='page__content'>
                 <Header handleAddClick={handleAddClick} weatherData={weatherData} />
                 

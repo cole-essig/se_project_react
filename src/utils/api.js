@@ -1,6 +1,8 @@
 const baseURL = 'http://localhost:3001';
+const token = localStorage.getItem('jwt')
 const contentType = {
     "Content-Type": "application/json",
+    authorization: `Bearer ${token}`,
   }
  
 export function checkResponse(res) {
