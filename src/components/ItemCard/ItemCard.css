@@ -25,3 +25,14 @@ border-radius: 15px;
 .card__image {
  max-width: 100%;
 }
+
+.card__like-button {
+  position: absolute;
+  padding: 0;
+  background-color: #fff;
+  border: none;
+  width: 21px;
+  height: 19px;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
