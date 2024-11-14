@@ -4,6 +4,46 @@
     width: 100%;
 }
 
+.sidebar__username {
+    line-height: 1.5;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: "Cabinet Grotesk-med", 'Times New Roman', Times, serif;
+}
+
 .sidebar__avatar {
     margin-right: 16px;
+    object-fit: contain;
+    max-width: 60px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.sidebar__buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 5px;  
+}
+
+.sidebar__profile-button {
+    max-width: 100px;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    line-height: 1.5;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: "Cabinet Grotesk-med", 'Times New Roman', Times, serif;
+}
+
+.sidebar__logout-button {
+  max-width: 100px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  line-height: 1.5;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: "Cabinet Grotesk-med", 'Times New Roman', Times, serif;
 }

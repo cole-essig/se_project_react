@@ -39,6 +39,10 @@ function App() {
       setActiveModal('add');
     };
 
+    const handleProfileChange = () => {
+      setActiveModal('edit');
+    }
+
     const closeActiveModal = () => {
       setActiveModal('');
     };
@@ -147,6 +151,7 @@ function App() {
     }, []);
 
     useEffect(() => {
+      signout();
       setCurrentUser({_id: "", user: '', avatar: avatar});
       const token = localStorage.getItem('jwt')
       const localUser = localStorage.getItem('user');
@@ -181,7 +186,7 @@ function App() {
                   <Route path='/profile' 
                     element={
                     <ProtectedRoute isLoggedIn={isLoggedIn} reload={setActiveModal}>
-                      <Profile handleImageClick={handleImageClick} handleAddClick={handleAddClick} clothingItems={clothingItems} />
+                      <Profile handleImageClick={handleImageClick} handleAddClick={handleAddClick} clothingItems={clothingItems} handleProfileChange={handleProfileChange} handleLogout={signout} />
                     </ProtectedRoute>} />
                   <Route path='*' element={<Navigate to='/' replace />} />
                 </Routes>
