@@ -4,7 +4,7 @@ import { CurrentTempUnitContext } from '../../utils/contexts/CurrentTempUnitCont
 import WeatherCard from '../WeatherCard/WeatherCard'
 import ItemCard from '../ItemCard/ItemCard';
 
-function Main({ weatherData, handleImageClick, clothingItems, onCardLike }) {
+function Main({ weatherData, handleImageClick, clothingItems, onCardLike, isLoggedIn }) {
     const {currentTempUnit} = useContext(CurrentTempUnitContext);
     return (
         <main>
@@ -17,7 +17,7 @@ function Main({ weatherData, handleImageClick, clothingItems, onCardLike }) {
                     {clothingItems.filter((item) => {
                         return item.weather === weatherData.type;
                     }).map((item) => {
-                      return <ItemCard key={item._id} item={item} onCardClick={handleImageClick} onCardLike={onCardLike} />;
+                      return <ItemCard key={item._id} item={item} onCardClick={handleImageClick} onCardLike={onCardLike} isLoggedIn={isLoggedIn} />;
                     })}
                 </ul>
 

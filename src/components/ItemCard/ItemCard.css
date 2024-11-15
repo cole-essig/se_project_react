@@ -9,12 +9,19 @@ border: 1px solid rgba(0, 0, 0, 0.3);
 border-radius: 15px;
 }
 
+.card__header {
+  position: absolute;
+  top: 15px;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+}
+
 .card__name {
-    position: absolute;
-    top: 15px;
-    margin: 0;
     background-color: #fff;
-    padding: 5px 10px;
+    margin: 0 10px 0 0;
+    padding: 5px;
     border-radius: 5px;
     font-weight: 700;
     font-size: 16px;
@@ -22,17 +29,21 @@ border-radius: 15px;
     font-family: "Cabinet Grotesk-med", 'Times New Roman', Times, serif;
 }
 
+.card__like-button {
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  width: 21px;
+  height: 19px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.card__like-button_active {
+  opacity: 1
+}
+
 .card__image {
  max-width: 100%;
 }
 
-.card__like-button {
-  position: absolute;
-  padding: 0;
-  background-color: #fff;
-  border: none;
-  width: 21px;
-  height: 19px;
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out;
-}

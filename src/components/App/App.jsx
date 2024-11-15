@@ -33,7 +33,7 @@ function App() {
     const [currentTempUnit, setToggleUnitSwitch] = useState("F");
     const [clothingItems, setClothingItems] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [currentUser, setCurrentUser] = useState({_id: '', user: "", avatar: ""});
+    const [currentUser, setCurrentUser] = useState({_id: '', user: "", avatar: avatar});
 
     const handleAddClick = () => {
       setActiveModal('add');
@@ -172,7 +172,6 @@ function App() {
     }, []);
 
     useEffect(() => {
-      setCurrentUser({_id: "", user: '', avatar: avatar});
       const token = localStorage.getItem('jwt')
       const localUser = localStorage.getItem('user');
       if (!token) {
@@ -202,7 +201,7 @@ function App() {
                 <Header handleAddClick={handleAddClick} weatherData={weatherData} />
                 
                 <Routes>
-                  <Route path='/' element={<Main weatherData={weatherData} handleImageClick={handleImageClick} clothingItems={clothingItems} onCardLike={handleCardLike} />} />
+                  <Route path='/' element={<Main weatherData={weatherData} handleImageClick={handleImageClick} clothingItems={clothingItems} onCardLike={handleCardLike} isLoggedIn={isLoggedIn} />} />
                   <Route path='/profile' 
                     element={
                     <ProtectedRoute isLoggedIn={isLoggedIn} reload={setActiveModal}>
