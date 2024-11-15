@@ -173,7 +173,6 @@ function App() {
 
     useEffect(() => {
       const token = localStorage.getItem('jwt')
-      const localUser = localStorage.getItem('user');
       if (!token) {
         setActiveModal('login');
         return;
@@ -182,9 +181,9 @@ function App() {
       .then((res) => {
         setIsLoggedIn(true);
         setCurrentUser({
-          _id: localUser._id,
-          user: localUser.name,
-          avatar: localUser.avatar
+          _id: res._id,
+          user: res.name,
+          avatar: res.avatar
         });
         setActiveModal('');
       })
