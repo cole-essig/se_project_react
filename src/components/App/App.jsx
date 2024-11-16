@@ -34,7 +34,6 @@ function App() {
     const [clothingItems, setClothingItems] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentUser, setCurrentUser] = useState({_id: '', user: "", avatar: avatar});
-
     const handleAddClick = () => {
       setActiveModal('add');
     };
@@ -53,20 +52,20 @@ function App() {
     }
 
     const handleCardLike = ({ ID, isLiked }) => {
-      !isLiked ? addCardLike(ID)
+      (isLiked.length === 0) ? addCardLike(ID)
                  .then((updatedCard) => {
-                  setClothingItems((clothingItems) => {
-                    clothingItems.map((item) => (item._id === ID ? updatedCard : item))
-                  })
+                  let updatedItems = clothingItems.map((item) => (item._id === ID ? updatedCard : item))
+                  setClothingItems(updatedItems)
+                  console.log(clothingItems)
                  })
                  .catch((err) => {
                   console.error(err)
                  })
                : removeCardLike(ID)
                .then((updatedCard) => {
-                setClothingItems((clothingItems) => {
-                  clothingItems.map((item) => (item._id === ID ? updatedCard : item))
-                })
+                let updatedItems = clothingItems.map((item) => (item._id === ID ? updatedCard : item))
+                setClothingItems(updatedItems)
+                console.log(clothingItems)
                })
                .catch((err) => {
                 console.error(err)
@@ -114,12 +113,12 @@ function App() {
     const onLogIn = ({ email, password }) => {
       signin({ email, password })
       .then((res) => {
+        console.log(res.token);
         setIsLoggedIn(true);
         setCurrentUser({_id: res.user._id, user: res.user.name, avatar: res.user.avatar});
         setActiveModal('')
         closeActiveModal();
         localStorage.setItem("jwt", res.token);
-        localStorage.setItem('user', res.user);
       })
       .catch((err) => {
         console.error(err);
@@ -181,7 +180,7 @@ function App() {
       .then((res) => {
         setIsLoggedIn(true);
         setCurrentUser({
-          _id: res._id,
+          _id: res.id,
           user: res.name,
           avatar: res.avatar
         });
@@ -200,7 +199,7 @@ function App() {
                 <Header handleAddClick={handleAddClick} weatherData={weatherData} />
                 
                 <Routes>
-                  <Route path='/' element={<Main weatherData={weatherData} handleImageClick={handleImageClick} clothingItems={clothingItems} onCardLike={handleCardLike} isLoggedIn={isLoggedIn} />} />
+                  <Route path='/' element={<Main weatherData={weatherData} handleImageClick={handleImageClick} clothingItems={clothingItems} onCardLike={handleCardLike} isLoggedIn={isLoggedIn} currentUser={currentUser} />} />
                   <Route path='/profile' 
                     element={
                     <ProtectedRoute isLoggedIn={isLoggedIn} reload={setActiveModal}>

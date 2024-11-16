@@ -5,17 +5,16 @@ import "./ItemCard.css";
 import heart from '../../assets/heart.svg'
 import blackheart from '../../assets/active-heart.svg'
 
-function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
+function ItemCard({ item, onCardClick, onCardLike, isLoggedIn, currentUser }) {
     const [isLiked, setIsLiked] = useState(false);
     const [isLikedBy, setIsLikedBy] = useState([]);
-    const isLikedCurrentUser = item.likes.some(id => id === currentUser._id);
-
+    const isLikedCurrentUser = isLikedBy.includes(currentUser._id);
     const handleCardClick = () => {
         onCardClick(item);
     }
 
     const handleLike = () => {
-      onCardLike({ ID: item._id, isLike: item.likes})
+      onCardLike({ ID: item._id, isLiked: item.likes})
       setIsLiked(true);
       setIsLikedBy([item._id, ...isLikedBy]);
     }

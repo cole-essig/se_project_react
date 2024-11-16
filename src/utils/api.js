@@ -14,6 +14,7 @@ function getItems() {
 }
 
 function setItems(card) {
+  // let token = localStorage.getItem('jwt');
   return fetch(baseURL + '/items', {
     method: 'POST',
     headers: contentType,
