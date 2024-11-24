@@ -210,7 +210,7 @@ function App() {
                   <Route path='/' element={<Main weatherData={weatherData} handleImageClick={handleImageClick} clothingItems={clothingItems} onCardLike={handleCardLike} isLoggedIn={isLoggedIn} currentUser={currentUser} />} />
                   <Route path='/profile' 
                     element={
-                    <ProtectedRoute isLoggedIn={isLoggedIn} reload={setActiveModal}>
+                    <ProtectedRoute isLoggedIn={isLoggedIn} anonymous >
                       <Profile handleImageClick={handleImageClick} handleAddClick={handleAddClick} clothingItems={clothingItems} handleProfileChange={handleProfileChange} handleLogout={signout} />
                     </ProtectedRoute>} />
                   <Route path='*' element={<Navigate to='/' replace />} />
