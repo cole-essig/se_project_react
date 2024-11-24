@@ -38,6 +38,14 @@ function App() {
       setActiveModal('add');
     };
 
+    const handleSignUpClick = () => {
+      setActiveModal('register')
+    }
+
+    const handleLogInClick = () => {
+      setActiveModal('login')
+    }
+
     const handleProfileChange = () => {
       setActiveModal('edit');
     }
@@ -196,7 +204,7 @@ function App() {
           <CurrentTempUnitContext.Provider value={{currentTempUnit, handleTempToggleChange}}>
             <CurrentUserContext.Provider value={currentUser}>
             <div className='page__content'>
-                <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+                <Header handleAddClick={handleAddClick} weatherData={weatherData} isLoggedIn={isLoggedIn} onSignUpClick={handleSignUpClick} onLogInClick={handleLogInClick} />
                 
                 <Routes>
                   <Route path='/' element={<Main weatherData={weatherData} handleImageClick={handleImageClick} clothingItems={clothingItems} onCardLike={handleCardLike} isLoggedIn={isLoggedIn} currentUser={currentUser} />} />
