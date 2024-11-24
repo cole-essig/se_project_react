@@ -10,7 +10,7 @@ function ModalWithForm({ children, handleModalClose, isOpen, handleSubmit, title
           {children}
           <div className='modal__form-buttons'>
             <button className="modal__submit-button" type='submit'>{button}</button>
-            <button className={`modal__switch-button ${isOpen ? 'modal_switch-on' : ''}`} onClick={handleModalSwitch}>{switchButton}</button>
+            <button className={`modal__switch-button ${isOpen ? 'modal_switch-on' : ''}`} onClick={handleModalSwitch} type='button'>{switchButton}</button>
           </div>
       </form>
     </div>
