@@ -119,7 +119,6 @@ function App() {
     const onLogIn = ({ email, password }) => {
       signin({ email, password })
       .then((res) => {
-        console.log(res.token);
         setIsLoggedIn(true);
         setCurrentUser({_id: res.user._id, user: res.user.name, avatar: res.user.avatar});
         setActiveModal('')
