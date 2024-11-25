@@ -14,7 +14,6 @@ function getItems() {
 }
 
 function setItems(card) {
-  // let token = localStorage.getItem('jwt');
   return fetch(baseURL + '/items', {
     method: 'POST',
     headers: contentType,
@@ -36,14 +35,20 @@ function deleteItems(ID) {
 function addCardLike(ID) {
   return fetch(baseURL + '/items/' + ID + "/likes", {
     method: 'PUT',
-    headers: contentType,
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
   }).then(checkResponse)
 }
 
 function removeCardLike(ID) {
   return fetch(baseURL + '/items/' + ID + "/likes", {
     method: 'DELETE',
-    headers: contentType,
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
   }).then(checkResponse)
 }
 

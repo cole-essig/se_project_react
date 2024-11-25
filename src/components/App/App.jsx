@@ -64,7 +64,6 @@ function App() {
                  .then((updatedCard) => {
                   let updatedItems = clothingItems.map((item) => (item._id === ID ? updatedCard : item))
                   setClothingItems(updatedItems)
-                  console.log(clothingItems)
                  })
                  .catch((err) => {
                   console.error(err)
@@ -73,7 +72,6 @@ function App() {
                .then((updatedCard) => {
                 let updatedItems = clothingItems.map((item) => (item._id === ID ? updatedCard : item))
                 setClothingItems(updatedItems)
-                console.log(clothingItems)
                })
                .catch((err) => {
                 console.error(err)

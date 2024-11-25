@@ -14,7 +14,7 @@ function ClothesSection({ handleImageClick, handleAddNewClick, clothingItems }) 
               </div>
                 <ul className="clothes-section__cards_list">
                     {clothingItems.map((item) => {
-                      if (currentUser._id === item._id) {
+                      if (currentUser._id === item.owner) {
                         return <ItemCard key={item._id} item={item} onCardClick={handleImageClick} />;
                       }
                     })}
