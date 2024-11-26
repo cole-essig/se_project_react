@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import { useContext } from 'react';
+import { CurrentUserContext } from '../../utils/contexts/CurrentuserContext';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import './EditProfileModal.css';
 
@@ -21,6 +23,7 @@ function EditProfileModal({ handleModalClose, isOpen, switchActiveModal}) {
     const title = 'Change Profile data';
     const button = 'Save changes';
     const switchButton ="";
+    const currentUser = useContext(CurrentUserContext);
     return (
     <ModalWithForm
         handleModalClose={handleModalClose}
@@ -37,7 +40,7 @@ function EditProfileModal({ handleModalClose, isOpen, switchActiveModal}) {
                     type='text'
                     className='modal__input'
                     id='name'
-                    placeholder='Name'
+                    placeholder={currentUser.user}
                     value={name}
                     onChange={handleNameChange}
                 />
@@ -48,7 +51,7 @@ function EditProfileModal({ handleModalClose, isOpen, switchActiveModal}) {
                     type='url'
                     className='modal__input'
                     id='avatarURL'
-                    placeholder='Avatar URL'
+                    placeholder={currentUser.avatar}
                     onChange={handleAvatarChange}
                     value={avatar}
                 />
