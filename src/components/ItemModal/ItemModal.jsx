@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 function ItemModal({ isOpen, handleModalClose, card, handleCardDelete }) {
   const currentUser = useContext(CurrentUserContext);
-  const isOwn = card._id === currentUser._id;
+  const isOwn = card.owner === currentUser._id;
   return (
    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
      <div className="modal__content_type_image">
