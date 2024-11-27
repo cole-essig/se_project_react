@@ -1,23 +1,31 @@
 import React from "react";
-import { useState } from "react";
-export default ItemCard;
+import { useState, useEffect } from "react";
+import { useContext } from 'react';
+import { CurrentUserContext } from '../../utils/contexts/CurrentuserContext';
 import "./ItemCard.css";
 import heart from '../../assets/heart.svg'
 import blackheart from '../../assets/active-heart.svg'
 
 function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
+    const currentUser = useContext(CurrentUserContext);
     const [isLiked, setIsLiked] = useState(false);
     const [isLikedBy, setIsLikedBy] = useState([]);
     
     const handleCardClick = () => {
         onCardClick(item);
     }
-
+    
     const handleLike = () => {
       onCardLike({ ID: item._id, isLiked: item.likes})
       setIsLiked(!isLiked);
       setIsLikedBy([item._id, ...isLikedBy]);
     }
+
+    useEffect(() => {
+      if (item.likes.includes(currentUser._id) || isLikedBy.includes(currentUser._id)) {
+        setIsLiked(true);
+      }
+    }, [])
 
     return (
         <li className='card'>
@@ -30,3 +38,4 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
         )
 }
 
+export default ItemCard;

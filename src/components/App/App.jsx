@@ -87,8 +87,7 @@ function App() {
       }
       setItems(newCard)
       .then((res) => {
-        setClothingItems([newCard, ...clothingItems]);
-        console.log(res);
+        setClothingItems([res, ...clothingItems]);
         closeActiveModal();
       }).catch(console.error);
       
@@ -103,7 +102,6 @@ function App() {
     }
 
     const handleCardDelete = () => {
-      console.log(selectedCard._id)
        deleteItems(selectedCard._id)
        .then((res) => {
         console.log(res);
