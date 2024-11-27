@@ -4,7 +4,8 @@ import { CurrentUserContext } from '../../utils/contexts/CurrentuserContext';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import './EditProfileModal.css';
 
-function EditProfileModal({ handleModalClose, isOpen, switchActiveModal}) {
+function EditProfileModal({ handleModalClose, isOpen, switchActiveModal, profileUpdate }) {
+    const currentUser = useContext(CurrentUserContext);
     const [name, setName] = useState('');
     const handleNameChange = (e) => {
       setName(e.target.value);
@@ -17,13 +18,12 @@ function EditProfileModal({ handleModalClose, isOpen, switchActiveModal}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('heye');
+        profileUpdate({ name: name, avatar: avatar })
     }
 
     const title = 'Change Profile data';
     const button = 'Save changes';
     const switchButton ="";
-    const currentUser = useContext(CurrentUserContext);
     return (
     <ModalWithForm
         handleModalClose={handleModalClose}

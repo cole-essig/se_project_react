@@ -12,6 +12,17 @@ export function checkResponse(res) {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
+function updateProfile(user) {
+  return fetch(baseURL + '/users/me', {
+    method: 'PATCH',
+    headers: handleHeaders(),
+    body: JSON.stringify({
+        name: user.name,
+        avatar: user.avatar,
+      }),
+  }).then(checkResponse)
+}
+
 function getItems() {
     return fetch(baseURL + '/items').then(checkResponse)
 }
@@ -49,4 +60,4 @@ function removeCardLike(ID) {
   }).then(checkResponse)
 }
 
-export { getItems, setItems, deleteItems, addCardLike, removeCardLike }
+export { getItems, setItems, deleteItems, addCardLike, removeCardLike, updateProfile }

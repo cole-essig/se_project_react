@@ -16,7 +16,7 @@ import { getWeather, filterWeatherData } from '../../utils/weatherApi';
 import { APIkey, latitude, longitude } from '../../utils/constants';
 import {CurrentTempUnitContext} from '../../utils/contexts/CurrentTempUnitContext';
 import { CurrentUserContext } from '../../utils/contexts/CurrentuserContext';
-import { getItems, setItems, deleteItems, addCardLike, removeCardLike } from '../../utils/api';
+import { getItems, setItems, deleteItems, addCardLike, removeCardLike, updateProfile } from '../../utils/api';
 import { signin, signup, checkToken } from '../../utils/auth';
 
 function App() {
@@ -141,6 +141,22 @@ function App() {
       })
     }
 
+    const profileUpdate = (user) => {
+      updateProfile(user)
+      .then((res) => {
+        console.log(res)
+        setCurrentUser({
+          _id: res.id,
+          user: res.name,
+          avatar: res.avatar
+        });
+        setActiveModal('');
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+    }
+
     const signout = () => {
       localStorage.removeItem('jwt');
       setCurrentUser({user: '', avatar: ''});
@@ -222,7 +238,7 @@ function App() {
             />}
             {activeModal === 'login' && <LoginModal handleModalClose={closeActiveModal} isOpen={activeModal === 'login'} onLogIn={onLogIn} switchActiveModal={switchLoginModal} />}
             {activeModal === 'register' && <RegisterModal handleModalClose={closeActiveModal} isOpen={activeModal === 'register'} onRegister={onRegister} switchActiveModal={switchRegisterModal} />}
-            {activeModal === 'edit' && <EditProfileModal handleModalClose={closeActiveModal} isOpen={activeModal === 'edit'} switchActiveModal={switchRegisterModal} />}
+            {activeModal === 'edit' && <EditProfileModal handleModalClose={closeActiveModal} isOpen={activeModal === 'edit'} switchActiveModal={switchRegisterModal} profileUpdate={profileUpdate} />}
             </CurrentUserContext.Provider>
           </CurrentTempUnitContext.Provider>
         </div>
