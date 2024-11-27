@@ -208,7 +208,7 @@ function App() {
                   <Route path='/profile' 
                     element={
                     <ProtectedRoute isLoggedIn={isLoggedIn} anonymous >
-                      <Profile handleImageClick={handleImageClick} handleAddClick={handleAddClick} clothingItems={clothingItems} handleProfileChange={handleProfileChange} handleLogout={signout} isLoggedIn={isLoggedIn} />
+                      <Profile handleImageClick={handleImageClick} handleAddClick={handleAddClick} clothingItems={clothingItems} handleProfileChange={handleProfileChange} handleLogout={signout} isLoggedIn={isLoggedIn} onCardLike={handleCardLike} />
                     </ProtectedRoute>} />
                   <Route path='*' element={<Navigate to='/' replace />} />
                 </Routes>

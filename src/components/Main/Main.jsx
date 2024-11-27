@@ -15,7 +15,6 @@ function Main({ weatherData, handleImageClick, clothingItems, onCardLike, isLogg
                 </p>
                 <ul className="cards__list">
                     {clothingItems.filter((item) => {
-                        // console.log(item);
                         return item.weather === weatherData.type;
                     }).map((item) => {
                       return <ItemCard key={item._id} item={item} onCardClick={handleImageClick} onCardLike={onCardLike} isLoggedIn={isLoggedIn} currentUser={currentUser} />;

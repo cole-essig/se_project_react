@@ -1,9 +1,12 @@
 const baseURL = 'http://localhost:3001';
-const token = localStorage.getItem('jwt')
-const contentType = {
-    "Content-Type": "application/json",
-    authorization: `Bearer ${token}`,
-  }
+function handleHeaders() {
+  const token = localStorage.getItem('jwt')
+
+    return {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+    }
+}
  
 export function checkResponse(res) {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
@@ -16,7 +19,7 @@ function getItems() {
 function setItems(card) {
   return fetch(baseURL + '/items', {
     method: 'POST',
-    headers: contentType,
+    headers: handleHeaders(),
     body: JSON.stringify({
         _id: card._id,
         name: card.name,
@@ -35,20 +38,14 @@ function deleteItems(ID) {
 function addCardLike(ID) {
   return fetch(baseURL + '/items/' + ID + "/likes", {
     method: 'PUT',
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
+    headers: handleHeaders(),
   }).then(checkResponse)
 }
 
 function removeCardLike(ID) {
   return fetch(baseURL + '/items/' + ID + "/likes", {
     method: 'DELETE',
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
+    headers: handleHeaders(),
   }).then(checkResponse)
 }
 
