@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { CurrentUserContext } from '../../utils/contexts/CurrentuserContext';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import './EditProfileModal.css';
@@ -20,6 +20,16 @@ function EditProfileModal({ handleModalClose, isOpen, switchActiveModal, profile
         e.preventDefault();
         profileUpdate({ name: name, avatar: avatar })
     }
+
+    const currentUserValue = () => {
+        setName(currentUser.user);
+        setURL(currentUser.avatar);
+    }
+
+    useEffect(() => {
+      currentUserValue();
+    }, [])
+
 
     const title = 'Change Profile data';
     const button = 'Save changes';

@@ -42,7 +42,8 @@ function setItems(card) {
 
 function deleteItems(ID) {
     return fetch(baseURL + '/items/' + ID, {
-        method: "DELETE"
+        method: "DELETE",
+        headers: handleHeaders(),
     }).then(checkResponse)
 }
 
