@@ -8,7 +8,7 @@ function handleHeaders() {
     }
 }
  
-export function checkResponse(res) {
+function checkResponse(res) {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
@@ -61,4 +61,4 @@ function removeCardLike(ID) {
   }).then(checkResponse)
 }
 
-export { getItems, setItems, deleteItems, addCardLike, removeCardLike, updateProfile }
+export { getItems, setItems, deleteItems, addCardLike, removeCardLike, updateProfile, checkResponse }

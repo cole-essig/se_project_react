@@ -1,11 +1,9 @@
+import { checkResponse } from "./api";
 const baseURL = 'http://localhost:3001';
 const contentType = {
     "Content-Type": "application/json",
   }
  
-export function checkResponse(res) {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-}
 
 function signup ({ name, avatar, email, password }) {
   return fetch(baseURL + '/signup', {
