@@ -1,4 +1,7 @@
-const baseURL = 'http://localhost:3001';
+const baseURL = process.env.NODE_ENV === "production" 
+  ? "http://api.wtw.crabdance.com"
+  : "http://localhost:3001";
+
 function handleHeaders() {
   const token = localStorage.getItem('jwt')
 
