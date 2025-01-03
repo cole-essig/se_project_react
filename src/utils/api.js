@@ -1,5 +1,5 @@
 const baseURL = process.env.NODE_ENV === "production" 
-  ? "http://api.wtw.crabdance.com"
+  ? "https://api.wtw.crabdance.com"
   : "http://localhost:3001";
 
 function handleHeaders() {
