@@ -79,7 +79,23 @@ function App() {
     return () => { 
       document.removeEventListener("keydown", handleEscClose);
     };
-  }, [activeModal]);  
+  }, [activeModal]); 
+
+  const handleTokenLogIn = (token) => {
+    checkToken(token)
+      .then((res) => {
+        setIsLoggedIn(true);
+        setCurrentUser({
+          _id: res.id,
+          user: res.name,
+          avatar: res.avatar,
+        });
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  };
 
   const handleImageClick = (card) => {
     setActiveModal("preview");
@@ -112,7 +128,6 @@ function App() {
 
   const onAddItemSubmit = (values) => {
     const newCard = {
-      _id: Math.random(),
       name: values.name,
       weather: values.weather,
       imageUrl: values.imageUrl,
@@ -150,13 +165,7 @@ function App() {
   const onLogIn = ({ email, password }) => {
     signin({ email, password })
       .then((res) => {
-        setIsLoggedIn(true);
-        setCurrentUser({
-          _id: res.user._id,
-          user: res.user.name,
-          avatar: res.user.avatar,
-        });
-        closeActiveModal();
+        handleTokenLogIn(res.token)
         localStorage.setItem("jwt", res.token);
       })
       .catch((err) => {
@@ -232,19 +241,7 @@ function App() {
       setActiveModal("login");
       return;
     }
-    checkToken(token)
-      .then((res) => {
-        setIsLoggedIn(true);
-        setCurrentUser({
-          _id: res.id,
-          user: res.name,
-          avatar: res.avatar,
-        });
-        closeActiveModal();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+   handleTokenLogIn(token);
   }, []);
 
   return (
